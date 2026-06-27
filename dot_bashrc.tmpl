@@ -1,0 +1,148 @@
+# Managed by chezmoi.
+# shellcheck shell=bash
+
+path_prepend() {
+  [ -d "$1" ] || return
+  case ":$PATH:" in
+    *":$1:"*) ;;
+    *) PATH="$1${PATH:+:$PATH}" ;;
+  esac
+}
+
+path_append() {
+  [ -d "$1" ] || return
+  case ":$PATH:" in
+    *":$1:"*) ;;
+    *) PATH="${PATH:+$PATH:}$1" ;;
+  esac
+}
+
+path_prepend "$HOME/.local/bin"
+path_prepend "$HOME/bin"
+path_prepend "$HOME/.bun/bin"
+path_prepend "$HOME/.yarn/bin"
+path_prepend "$HOME/.config/yarn/global/node_modules/.bin"
+
+export GOPATH="${GOPATH:-$HOME/go}"
+export GOBIN="${GOBIN:-$GOPATH/bin}"
+path_prepend "$GOBIN"
+
+{{ if eq .chezmoi.os "darwin" -}}
+path_prepend "/opt/homebrew/bin"
+path_prepend "/opt/homebrew/sbin"
+path_prepend "/opt/homebrew/opt/llvm/bin"
+
+if [ -d /opt/homebrew/opt/llvm ]; then
+  export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+  export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+  export CMAKE_PREFIX_PATH="/opt/homebrew/opt/llvm"
+fi
+
+path_append "$HOME/.lmstudio/bin"
+{{ end -}}
+
+export PATH
+
+if command -v zed >/dev/null 2>&1; then
+  export EDITOR="${EDITOR:-zed}"
+elif command -v nvim >/dev/null 2>&1; then
+  export EDITOR="${EDITOR:-nvim}"
+elif command -v vim >/dev/null 2>&1; then
+  export EDITOR="${EDITOR:-vim}"
+else
+  export EDITOR="${EDITOR:-vi}"
+fi
+
+if command -v fd0 >/dev/null 2>&1; then
+  fd0_sock="$(fd0 ssh sock 2>/dev/null || true)"
+  if [ -n "$fd0_sock" ]; then
+    export SSH_AUTH_SOCK="$fd0_sock"
+  fi
+  unset fd0_sock
+{{ if eq .chezmoi.os "darwin" -}}
+elif [ -S "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock" ]; then
+  export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+{{ end -}}
+fi
+
+if [ -s "$HOME/.nvm/nvm.sh" ]; then
+  export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
+  . "$NVM_DIR/nvm.sh"
+fi
+
+if [ -s "$HOME/.nvm/bash_completion" ]; then
+  . "$HOME/.nvm/bash_completion"
+fi
+
+if [ -f "$HOME/.ghcup/env" ]; then
+  . "$HOME/.ghcup/env"
+fi
+
+{{ if eq .chezmoi.os "darwin" -}}
+if [ -f /opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh ]; then
+  . /opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh
+fi
+{{ else if eq .chezmoi.os "linux" -}}
+if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+  . "$HOME/miniconda3/etc/profile.d/conda.sh"
+elif [ -f "$HOME/.miniconda/etc/profile.d/conda.sh" ]; then
+  . "$HOME/.miniconda/etc/profile.d/conda.sh"
+fi
+{{ end }}
+
+case $- in
+  *i*) ;;
+  *) return ;;
+esac
+
+HISTCONTROL=ignoreboth
+HISTSIZE=1000
+HISTFILESIZE=2000
+shopt -s histappend
+shopt -s checkwinsize
+
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+{{ if eq .chezmoi.os "linux" -}}
+if command -v dircolors >/dev/null 2>&1; then
+  if [ -r "$HOME/.dircolors" ]; then
+    eval "$(dircolors -b "$HOME/.dircolors")"
+  else
+    eval "$(dircolors -b)"
+  fi
+  alias ls='ls --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
+fi
+{{ else if eq .chezmoi.os "darwin" -}}
+export CLICOLOR=1
+alias ls='ls -G'
+{{ end -}}
+
+if [ -f "$HOME/.bash_aliases" ]; then
+  . "$HOME/.bash_aliases"
+fi
+
+if [ -r /etc/bash_completion ]; then
+  . /etc/bash_completion
+elif [ -r /opt/homebrew/etc/profile.d/bash_completion.sh ]; then
+  . /opt/homebrew/etc/profile.d/bash_completion.sh
+fi
+
+if [ -r /etc/bash_completion.d/git-completion ]; then
+  . /etc/bash_completion.d/git-completion
+elif [ -r /opt/homebrew/etc/bash_completion.d/git-completion.bash ]; then
+  . /opt/homebrew/etc/bash_completion.d/git-completion.bash
+fi
+
+unset DOCKER_TLS_VERIFY
+unset DOCKER_HOST
+unset DOCKER_CERT_PATH
+unset DOCKER_MACHINE_NAME
+
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init bash)"
+fi

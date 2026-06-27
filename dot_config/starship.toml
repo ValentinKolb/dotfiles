@@ -1,0 +1,74 @@
+add_newline = false
+
+format = """
+$username$hostname $directory$git_branch$git_status\
+$golang$python$nodejs$docker_context\
+$line_break\
+$status\
+$cmd_duration\
+$character"""
+
+[username]
+show_always = false
+style_user = "bold cyan"
+format = "[$user]($style)"
+
+[hostname]
+ssh_only = true
+style = "bold yellow"
+format = "[@$hostname]($style)"
+
+[directory]
+style = "bold blue"
+truncation_length = 3
+truncate_to_repo = false
+format = " [$path]($style) "
+
+[git_branch]
+style = "bold purple"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+style = "bold red"
+format = "([$all_status$ahead_behind]($style) )"
+conflicted = "="
+ahead = "up${count}"
+behind = "down${count}"
+diverged = "up${ahead_count} down${behind_count}"
+untracked = "?${count}"
+stashed = "$${count}"
+modified = "!${count}"
+staged = "+${count}"
+renamed = ">${count}"
+deleted = "x${count}"
+
+[golang]
+symbol = "go "
+format = "[$symbol($version )]($style)"
+
+[python]
+symbol = "py "
+format = "[$symbol($version )]($style)"
+
+[nodejs]
+symbol = "node "
+format = "[$symbol($version )]($style)"
+
+[docker_context]
+symbol = "docker "
+format = "[$symbol$context]($style) "
+
+[cmd_duration]
+min_time = 500
+format = "[$duration]($style) "
+style = "bold yellow"
+
+[status]
+disabled = false
+symbol = "!"
+map_symbol = true
+format = "[$symbol$status]($style) "
+
+[character]
+success_symbol = "[#](bold green)"
+error_symbol = "[x](bold red)"
