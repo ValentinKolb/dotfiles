@@ -3,22 +3,30 @@
 
 path_prepend() {
   [ -d "$1" ] || return
-  case ":$PATH:" in
-    *":$1:"*) ;;
-    *) PATH="$1${PATH:+:$PATH}" ;;
-  esac
+  path_remove "$1"
+  PATH="$1${PATH:+:$PATH}"
 }
 
 path_append() {
   [ -d "$1" ] || return
-  case ":$PATH:" in
-    *":$1:"*) ;;
-    *) PATH="${PATH:+$PATH:}$1" ;;
-  esac
+  path_remove "$1"
+  PATH="${PATH:+$PATH:}$1"
 }
 
-path_prepend "$HOME/.local/bin"
-path_prepend "$HOME/bin"
+path_remove() {
+  local remove="$1"
+  local new_path="" entry old_ifs="$IFS"
+
+  IFS=:
+  for entry in $PATH; do
+    [ "$entry" = "$remove" ] && continue
+    new_path="${new_path:+$new_path:}$entry"
+  done
+  IFS="$old_ifs"
+
+  PATH="$new_path"
+}
+
 path_prepend "$HOME/.bun/bin"
 path_prepend "$HOME/.yarn/bin"
 path_prepend "$HOME/.config/yarn/global/node_modules/.bin"
@@ -41,6 +49,8 @@ fi
 path_append "$HOME/.lmstudio/bin"
 {{ end -}}
 
+path_prepend "$HOME/bin"
+path_prepend "$HOME/.local/bin"
 export PATH
 
 if command -v zed >/dev/null 2>&1; then
@@ -104,6 +114,30 @@ shopt -s checkwinsize
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+
+fd0() {
+  if [ "$1" = "unlock" ]; then
+    shift
+
+    local arg has_method=0
+    for arg in "$@"; do
+      case "$arg" in
+        --method | --method=* | -h | --help)
+          has_method=1
+          ;;
+      esac
+    done
+
+    if [ "$has_method" -eq 0 ]; then
+      printf '\n' | command fd0 unlock --method=yubikey "$@"
+    else
+      command fd0 unlock "$@"
+    fi
+    return
+  fi
+
+  command fd0 "$@"
+}
 
 {{ if eq .chezmoi.os "linux" -}}
 if command -v dircolors >/dev/null 2>&1; then

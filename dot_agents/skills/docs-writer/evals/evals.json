@@ -1,0 +1,41 @@
+{
+  "skill_name": "docs-writer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Write an end-user help article for exporting invoices. Facts: exports are available to workspace Owners and Accountants; the action is Billing > Invoices > Export; users choose CSV or PDF and a date range of at most 12 months; the export is prepared in the background and a download link is emailed to the requesting user; exports usually arrive within 10 minutes; if no email arrives, users should check Spam and then retry with a shorter date range. Do not invent other limits or settings.",
+      "expected_output": "A concise task guide organized around completing and verifying the export. It must cover permissions, the exact UI path, formats, date limit, asynchronous delivery, expected timing, and the two recovery actions without adding unsupported behavior.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Rewrite this help text for non-technical users without losing information: 'The synchronization subsystem periodically performs bidirectional reconciliation operations for locally instantiated records and their remote counterparts. In the event that connectivity is unavailable, changes may potentially remain in a pending state until such time as a viable network connection has been re-established. It is important to note that users should avoid terminating the application during this process.' Facts: the app shows 'Waiting for connection' while offline and 'Synced' when finished.",
+      "expected_output": "Short, concrete copy that explains offline behavior, uses the two exact status labels, and tells the user to keep the app open until synchronization finishes. It must not retain abstract system language or add timing claims.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Create a troubleshooting page for the user-visible error 'We couldn't upload this file'. Facts: supported formats are PDF, JPG, and PNG; maximum size is 20 MB; password-protected PDFs are rejected; interrupted uploads can be retried without creating duplicates; support needs the file name and the time of the failed attempt. Order the guidance by what a user should check first.",
+      "expected_output": "A symptom-led troubleshooting page with checks ordered for efficient recovery, a verification step, safe retry guidance, and actionable escalation details. It must not group causes by internal implementation or invent new causes.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Write a getting-started page for a shared household budget app. A new household starts with one Owner. The Owner creates categories, invites Members by email, and adds the first transaction. Members can add transactions but cannot manage categories or invites. The first useful result is that both people can see the same transaction. Keep advanced reporting and bank connections out of scope.",
+      "expected_output": "A single-path onboarding guide that reaches the shared visible result, explains the role difference at the point it matters, and does not drift into advanced features. Coverage and detail should be balanced across setup, invitation, transaction creation, and verification.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "Write the title, body, primary button, and secondary button for a confirmation dialog that permanently deletes a project and its 42 documents. The deletion cannot be undone. The user typed the project name on the previous screen, so do not ask for it again.",
+      "expected_output": "Minimal, unambiguous destructive-action microcopy that names the scope and irreversibility. Buttons must name their actions and the copy must not add redundant confirmation work, humor, or reassurance.",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Draft a concept page explaining workspaces in a project management product. Facts: every project belongs to exactly one workspace; members and billing are managed per workspace; moving a project changes who can access it and which subscription pays for it; a project can be moved only by a workspace Owner who is also an Owner of the destination workspace. The reader wants to decide whether to create another workspace or another project.",
+      "expected_output": "A decision-oriented mental model that explains relationships, access and billing consequences, the move constraint, and the practical choice between another workspace and another project. It must not become a step-by-step moving guide or add product behavior.",
+      "files": []
+    }
+  ]
+}
