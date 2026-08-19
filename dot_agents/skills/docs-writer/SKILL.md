@@ -1,6 +1,6 @@
 ---
 name: docs-writer
-description: Write or revise end-user documentation and product-facing text, including help articles, onboarding, task guides, troubleshooting, concepts, reference pages, READMEs, tooltips, field hints, errors, empty states, and change notices. Use whenever a user asks for documentation, help content, explanatory UI copy, or a rewrite of existing docs. Ground the result in product truth, organize it around the reader's task, keep coverage and detail balanced, and remove generic LLM prose.
+description: Write, review, or revise end-user documentation and product-facing text, including help articles, onboarding, task guides, troubleshooting, READMEs, tooltips, field hints, warnings, errors, empty states, and change notices. Use whenever a user asks to explain a product, feature, workflow, setting, or change to readers; simplify technical copy; or improve existing documentation or UI text. Focus on what the reader can do, must decide, or will notice, and omit internal implementation unless it changes those outcomes. Ground claims in product truth and remove generic LLM prose.
 ---
 
 # Docs writer
@@ -11,6 +11,11 @@ understand the right thing.
 Good prose cannot rescue wrong facts, missing topics, or a structure based on
 the product's internals instead of the reader's goal. Solve those problems
 before polishing sentences.
+
+Treat implementation details as source material, not as documentation by
+default. Include one only when this reader needs it to act, choose, recognize a
+state, avoid a mistake, or recover from a problem. Otherwise state only the
+user-visible consequence.
 
 ## Workflow
 
@@ -41,6 +46,7 @@ Reader:
 Situation:
 Goal:
 Success:
+User-visible effect:
 Already knows:
 Must learn:
 Channel:
@@ -59,6 +65,11 @@ As <reader>, I need to <task or answer>, so I can <outcome>.
 Write the real questions the document must answer. Use one question for
 microcopy and usually 3–7 for a page. These questions are the coverage plan.
 Do not show this worksheet unless the user asks for it.
+
+For each candidate fact, ask what it lets the reader do, decide, or predict. If
+the answer is nothing, leave it out. What counts as an internal detail depends
+on the reader: an API consumer may need the public contract and failure
+behavior, but not the service topology or storage mechanism behind it.
 
 ### 3. Choose the content shape
 
@@ -106,15 +117,23 @@ non-linear or long enough that readers need to jump between sections.
 - After meaningful steps, show how to recognize success.
 - Put warnings before the action and name the consequence.
 - Use exact product labels and one term per concept.
+- State what changes for the reader before explaining why. Omit internal
+  component names, architecture, data flow, and implementation mechanisms
+  unless the reader needs them to act, choose, recognize a state, or recover.
+- When a technical detail is necessary, connect it directly to its practical
+  consequence and explain it in the reader's vocabulary.
 - Prefer concrete verbs, short paragraphs, and the reader's vocabulary.
+- Name the source of an attribution or remove the claim.
 - Use examples only when accurate and more useful than another explanation.
 - Use a screenshot or diagram when spatial relationships matter; do not
   decorate.
 
 Delete meta-narration, generic introductions, repeated conclusions, marketing
-claims, unsupported adjectives, and phrases such as “simply”, “just”, “easy”,
-“powerful”, “seamless”, or “in order to”. Do not replace them with different
-filler.
+claims, and phrases such as “simply”, “just”, “easy”, “powerful”, “seamless”,
+or “in order to”. Replace qualitative claims with supported user-visible
+behavior, an example, or a measurement; otherwise remove them. If a sentence
+could appear unchanged in another product's documentation, make it specific or
+cut it. Do not replace deleted prose with different filler.
 
 ### 6. Verify before delivery
 

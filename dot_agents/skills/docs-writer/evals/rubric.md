@@ -14,6 +14,14 @@ The document helps the named reader achieve the intended outcome or answer the
 intended decision. Product internals and adjacent features do not displace the
 reader's goal.
 
+## Reader perspective
+
+The document explains what the reader can do, must decide, or will notice. It
+includes a technical detail only when that reader needs it to act, choose,
+recognize a state, avoid a mistake, or recover. Necessary technical detail is
+connected directly to its practical consequence and uses the reader's
+vocabulary.
+
 ## Coverage
 
 The output covers every fact and reader question needed for success. It does not
@@ -34,8 +42,11 @@ first.
 ## Language
 
 The output is concrete, direct, and economical. It uses the reader's vocabulary
-and consistent terms without meta-narration, filler, marketing language, vague
-claims, or repetitive summaries.
+and consistent terms. Actors, actions, and observable results replace abstract
+process language. Attributions name a source, and qualitative claims are
+supported by user-visible behavior, an example, or a measurement. The output
+contains no meta-narration, filler, marketing language, vague claims, or
+repetitive summaries.
 
 ## Hard failures
 
@@ -46,3 +57,5 @@ Mark the result unsuitable regardless of its average score if it:
 - gives an unsafe or destructive instruction without warning
 - contradicts itself
 - is organized primarily around implementation details the reader does not know
+- explains internal implementation while leaving its effect on the reader
+  unclear

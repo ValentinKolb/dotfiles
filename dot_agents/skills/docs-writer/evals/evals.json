@@ -36,6 +36,12 @@
       "prompt": "Draft a concept page explaining workspaces in a project management product. Facts: every project belongs to exactly one workspace; members and billing are managed per workspace; moving a project changes who can access it and which subscription pays for it; a project can be moved only by a workspace Owner who is also an Owner of the destination workspace. The reader wants to decide whether to create another workspace or another project.",
       "expected_output": "A decision-oriented mental model that explains relationships, access and billing consequences, the move constraint, and the practical choice between another workspace and another project. It must not become a step-by-step moving guide or add product behavior.",
       "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "Rewrite this release note for customers: 'Our powerful new search experience represents a pivotal enhancement to the platform, leveraging incremental indexing whenever documents change to deliver significantly faster results and ensuring teams can seamlessly find what they need. Industry experts agree that responsive search is crucial in today's evolving landscape.' Facts: search results now appear in 200 ms instead of 1.4 seconds in the company's benchmark of 100,000 documents; internally, indexing runs when a document is added or edited; users do not need to change any settings. Preserve supported facts only when they matter to the customer.",
+      "expected_output": "A short customer-facing change notice that leads with the measured improvement and states that no settings change is required. It must omit the indexing implementation because it does not change what the customer does or experiences, and remove vague attribution, promotional language, abstract claims, and unsupported implications without replacing them with different filler.",
+      "files": []
     }
   ]
 }
