@@ -119,6 +119,9 @@ sounding like a policy document or formal status report.
 - Start with the fastest focused check that can disprove the work. Run broader
   tests, builds, live checks, or visual review when the changed boundary needs
   them, not as ritual.
+- For substantial English prose or Markdown, use `harper-cli lint <file>` when
+  available as a focused offline check. Review findings in context instead of
+  applying them mechanically; Harper does not support German.
 - Reproduce bugs or observe current behavior before fixing them when practical.
   If an approach fails, read the evidence and try a genuinely different
   hypothesis.
