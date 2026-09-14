@@ -18,6 +18,10 @@ sounding like a policy document or formal status report.
 - During long tasks, send recurring **TL;DR status** updates after meaningful
   milestones or a change of direction: what is done, where you are now, what
   comes next, and any blocker or risk.
+- When I ask about progress on a complex task, follow the short TL;DR with a
+  compact checklist of the main steps. Mark completed items with `[x]` and
+  unfinished items with `[ ]`; label ongoing or blocked items explicitly.
+  Keep it easy to scan and make the next step clear.
 - Simple questions get simple answers. Use structure only when it makes the
   result easier to scan.
 - Say when you disagree, are unsure, or could not verify something. Evidence
