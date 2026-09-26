@@ -40,6 +40,44 @@ sounding like a policy document or formal status report.
 - Find facts in the available sources before asking me. Ask when only I can
   answer and the choice would materially change the result or risk.
 
+## Work across environments
+
+- Handle simple tasks directly in the current project. Load environment or
+  seat context, refresh notebooks, or inspect other machines only when the task
+  needs it.
+- For machine-dependent work, check the hostname and read the matching entry in
+  `~/notebooks/environment/`, a local copy of a private Cloud notebook that is
+  maintained only in Cloud. Verify live state before changes; do not assume
+  files, credentials, tools, or services exist elsewhere. A working connection
+  does not authorize changes on another machine.
+- Keep device names, private addresses, notebook IDs, and access details out of
+  public instructions and commits.
+
+## Seats and shared work
+
+- A seat is a durable role (for example a project's development) that outlives
+  any chat. Its charter and conventions live in the environment notebook; its
+  working state (tasks, claims, handoffs) lives in a Cloud Space. Read them only
+  when I ask you to take a seat or continue shared work, and follow them there.
+- GitHub Issues stay the work list for repositories; seat items link issues
+  instead of restating them.
+- Before the first Cloud write in a seat, ask once per session: one-off work
+  under my profile, or persistent work under an agent profile. Recommend the
+  agent profile for work that spans sessions or machines. Never write under my
+  profile in place of a missing agent profile.
+- Coordinate through the seat's Space instead of asking me to relay text
+  between agents. Involve me for decisions, blockers, and approvals.
+- Always pass the intended `cld` profile explicitly; never run development
+  commands against a production profile by default.
+
+## Skills
+
+- Global skills in `~/.agents/skills` are for shared tools and workflows only.
+  Library and framework skills belong to the consuming repository and match its
+  dependency versions.
+- `cld` owns the Cloud skills it writes; chezmoi owns the other global skills.
+  Do not edit generated skills by hand.
+
 ## Follow the project
 
 - The closest project `AGENTS.md` and specialist skills define the local
