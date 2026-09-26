@@ -53,6 +53,13 @@ path_prepend "$HOME/bin"
 path_prepend "$HOME/.local/bin"
 export PATH
 
+# Machine-local AI provider settings written by Devstation; never committed.
+if [ -r "$HOME/.config/devstation/provider.env" ]; then
+  set -a
+  . "$HOME/.config/devstation/provider.env"
+  set +a
+fi
+
 if command -v zed >/dev/null 2>&1; then
   export EDITOR="${EDITOR:-zed}"
 elif command -v nvim >/dev/null 2>&1; then
@@ -152,6 +159,15 @@ unset DOCKER_TLS_VERIFY
 unset DOCKER_HOST
 unset DOCKER_CERT_PATH
 unset DOCKER_MACHINE_NAME
+
+# INWX production accounts retrieve credentials from fd0 only for each command.
+unset INWX_ENVIRONMENT
+unset INWX_USERNAME INWX_USERNAME_FILE
+unset INWX_PASSWORD INWX_PASSWORD_FILE
+unset INWX_SHARED_SECRET INWX_SHARED_SECRET_FILE
+if [ -r "$HOME/.config/inwx-cli/fd0-accounts.sh" ]; then
+  . "$HOME/.config/inwx-cli/fd0-accounts.sh"
+fi
 
 if command -v starship >/dev/null 2>&1; then
   eval "$(starship init bash)"
