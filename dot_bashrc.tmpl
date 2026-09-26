@@ -115,30 +115,6 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-fd0() {
-  if [ "$1" = "unlock" ]; then
-    shift
-
-    local arg has_method=0
-    for arg in "$@"; do
-      case "$arg" in
-        --method | --method=* | -h | --help)
-          has_method=1
-          ;;
-      esac
-    done
-
-    if [ "$has_method" -eq 0 ]; then
-      printf '\n' | command fd0 unlock --method=yubikey "$@"
-    else
-      command fd0 unlock "$@"
-    fi
-    return
-  fi
-
-  command fd0 "$@"
-}
-
 {{ if eq .chezmoi.os "linux" -}}
 if command -v dircolors >/dev/null 2>&1; then
   if [ -r "$HOME/.dircolors" ]; then
