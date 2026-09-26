@@ -75,8 +75,10 @@ sounding like a policy document or formal status report.
 - Global skills in `~/.agents/skills` are for shared tools and workflows only.
   Library and framework skills belong to the consuming repository and match its
   dependency versions.
-- `cld` owns the Cloud skills it writes; chezmoi owns the other global skills.
-  Do not edit generated skills by hand.
+- Ownership decides how to change a global skill: `cld` writes the Cloud
+  skills, `bunx skills add -g` installs third-party skills into
+  `~/.agents/skills` and links them for Claude, and chezmoi manages skills kept
+  in the dotfiles repository. Do not edit generated or installed copies.
 
 ## Follow the project
 
