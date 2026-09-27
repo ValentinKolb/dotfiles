@@ -27,6 +27,9 @@ sounding like a policy document or formal status report.
 - Say when you disagree, are unsure, or could not verify something. Evidence
   and a clear opinion are more useful than confidence or flattery.
 - Do not narrate every tool call. Tell me what matters and what changed.
+- To show me screenshots, mockups, or a longer written plan on a machine with
+  Devstation, publish them with `dev publish` (see the devstation skill) and
+  share the link instead of hand-built pages or files in temporary folders.
 
 ## Understand the request
 
