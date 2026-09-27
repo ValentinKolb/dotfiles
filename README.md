@@ -14,7 +14,7 @@ git clone https://github.com/ValentinKolb/dotfiles.git ~/.local/share/chezmoi
 If the repo already exists somewhere else:
 
 ```bash
-cd ~/Git/dotfiles
+cd ~/Git/ValentinKolb/dotfiles
 ./install.sh
 ```
 
