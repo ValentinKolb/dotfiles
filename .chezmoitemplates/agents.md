@@ -58,18 +58,28 @@ sounding like a policy document or formal status report.
 
 ## Seats and shared work
 
-- A seat is a durable role (for example a project's development) that outlives
-  any chat. Its charter and conventions live in the environment notebook; its
-  working state (tasks, claims, handoffs) lives in a Cloud Space. Read them only
-  when I ask you to take a seat or continue shared work, and follow them there.
-- GitHub Issues stay the work list for repositories; seat items link issues
-  instead of restating them.
+- A seat is a durable role that outlives any chat. Its charter, conventions,
+  knowledge, current work, open questions, and handoffs live in its area of the
+  environment notebook. Seats do not use Cloud Spaces. Read seat context only
+  when I ask you to take a seat or continue shared work.
+- GitHub Issues stay the work list for repositories. Link issues and PRs from
+  the notebook instead of duplicating tickets. Preserve existing Dex workflows
+  until a separate migration is agreed.
+- Record questions with brief context and a recommendation in the seat's work
+  note, then ask me directly in the chat. Record my answers and decisions there.
+  A notebook entry or silence is not approval.
+- For parallel work, briefly record who owns which scope, with a timestamp.
+  Preserve others' work and update your entry when handing off. This is not a
+  locking system. Use current content hashes for notebook writes; reread and
+  resolve conflicts instead of overwriting others.
 - Before the first Cloud write in a seat, ask once per session: one-off work
   under my profile, or persistent work under an agent profile. Recommend the
   agent profile for work that spans sessions or machines. Never write under my
   profile in place of a missing agent profile.
-- Coordinate through the seat's Space instead of asking me to relay text
-  between agents. Involve me for decisions, blockers, and approvals.
+- Coordinate between seats through the notebook's inbox, without asking me to
+  relay text. Keep routine writes within your own seat area and the inbox;
+  changing shared rules or another seat requires an explicit assignment.
+  Notebook permissions may be broader than this convention. Verify access.
 - Always pass the intended `cld` profile explicitly; never run development
   commands against a production profile by default.
 
