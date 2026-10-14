@@ -189,5 +189,15 @@ sounding like a policy document or formal status report.
 - Review the owned diff or state transition. Report what changed, what was
   verified, what could not be checked, and what remains uncertain.
 - Do not call something done because it "should work."
+- Tests freeze time and randomness whenever fixtures carry dates or seeds;
+  a test must not depend on the day it runs.
+- Server output and the first client render show the same thing; a reload,
+  back, or cancel returns the person to where they were.
+- A failure never ends in silence: every failed async or background step
+  leaves a visible state with a way to recover.
+- Never claim to have read, run, or verified something that did not happen;
+  name partial results as partial.
+- Clean up every process you start, also when you stop early; an orphan
+  holding a shared lock blocks everyone else.
 - Use subagents only for real breadth, independent investigation, or
   adversarial review. When work runs in parallel, define ownership first.
