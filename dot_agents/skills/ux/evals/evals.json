@@ -34,6 +34,19 @@
         "Liefert eine einzige passende Buttonbeschriftung für das Öffnen der Vorlagenauswahl.",
         "Fügt weder Audit noch Checkliste, Rückfragen oder nicht angeforderte Umsetzung hinzu."
       ]
+    },
+    {
+      "id": 4,
+      "prompt": "Setze den folgenden freigegebenen Mockup-Ausschnitt als kleine lauffähige UI-Demo in einem isolierten Arbeitsverzeichnis um. Es geht um den Preise-Editor einer bestehenden Artikelverwaltung. Das Designsystem verwendet Systemschrift, 8-px-Abstände, blaue Primärbuttons, beschriftete Zahlenfelder und einen reservierten Statusbereich unter dem Feld; behalte das bei. Mockup: Die gefilterte Liste „Ohne Preis“ öffnet den Artikel KA-104 im Editor. Nach Eingabe von 129 und Klick auf „Preis speichern“ bleibt der Wert sichtbar, der Button ist während des Speicherns deaktiviert und der Status lautet „Wird gespeichert …“. Bei einer bekannten Ablehnung steht im Statusbereich dauerhaft „Preis konnte nicht gespeichert werden“ mit „Erneut versuchen“. Dieser Button sendet den unveränderten Wert erneut; erst die tatsächliche Bestätigung zeigt „Preis gespeichert“. Die Demo-Servicefunktion lehnt den ersten Aufruf nach kurzer Wartezeit sicher vor dem Speichern ab und bestätigt den zweiten; es gibt keinen echten Backend-Zugriff. „Zur Liste“ führt mit erhaltenem Filter und ausgewähltem Artikel zurück. Zeige den Ablauf mit diesem deterministischen Service. Liefere außerdem die kurze Übergabe-Checkliste für eine spätere Umsetzung durch einen anderen Agenten und unterscheide tatsächlich geprüfte von ungeprüften Punkten. Noch kein Commit, Push oder Veröffentlichen.",
+      "expected_output": "Funktionierende, klar als simuliert erkennbare UI im vorhandenen Designsystem. Die bekannte Ablehnung behält den Preis; der echte Retry-Handler durchläuft erneut den Wartezustand und bestätigt erst nach Diensterfolg. Die Übergabe hält relevante Screens, Zustände und Interaktionen samt tatsächlicher Evidenz und offenen Prüfungen fest.",
+      "files": [],
+      "expectations": [
+        "Die erzeugte UI verwendet die vorgegebenen Designsystem-Konventionen und macht die simulierte Dienstgrenze deutlich.",
+        "Ein tatsächlich ausgelöster erster Speicherversuch zeigt Warten und anschließend den bleibenden Fehler mit erhaltenem Wert; es erscheint keine vorzeitige Erfolgsbestätigung.",
+        "Der sichtbare Retry löst den zweiten Dienstaufruf mit demselben Wert aus, verhindert weitere gleichzeitige Übermittlung und zeigt erst nach Bestätigung den Erfolg.",
+        "Die Rückkehr erhält Filter und Auswahl; Statuswechsel verschieben weder Eingabefeld noch primären Aktionsbereich.",
+        "Die Übergabe-Checkliste deckt Liste und Editor mit den relevanten Zuständen und Schlüsselinteraktionen ab und benennt tatsächlich ausgeführte Prüfungen sowie ungetestete Punkte, ohne Browserprüfung zu erfinden."
+      ]
     }
   ]
 }

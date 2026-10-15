@@ -1,7 +1,8 @@
 # Complete UI implementation
 
-Use this when implementing or reviewing functional UI. Select the checks that
-can expose omissions in the affected task; a small change needs a small check.
+Use this when handing off designs, implementing, or reviewing functional UI.
+Select the checks that can expose omissions in the affected task; a small
+change needs a small check.
 An interactive prototype may simulate backend behavior, but identify that
 boundary rather than presenting a simulated result as an actual outcome.
 
@@ -9,7 +10,15 @@ boundary rather than presenting a simulated result as an actual outcome.
 
 For a substantial change, keep a short working checklist of material promises
 from the brief, mockup, and design decisions. For each, identify the trigger,
-observable result, and evidence. No separate report or project file is required.
+observable result, and evidence. When the same person or agent designs and
+builds, no separate report or project file is required.
+
+When different people or agents design and build, ship the mockup with its
+parity checklist: screen × state × key interaction. The implementation PR
+carries that checklist with evidence per item, identifies anything unverified,
+and names any cuts explicitly approved by the decision-maker. Use the equivalent
+implementation handoff when the project does not use PRs. Do not silently drop
+states or treat a builder's omission as an approved scope change.
 
 For example, "keeps edits after failure" needs an actual rejected save with
 the entered value still present and a usable next step. A catch block that only
@@ -40,7 +49,7 @@ is preserved, and what they can do next. Check the actual response paths:
 | Rejection or known failure | Keep useful input, identify the problem, and offer a correction, safe retry, or another available path. A disappearing toast or console message cannot be the only error feedback. |
 | Uncertain outcome | A lost response can follow a successful write. Reconcile with the authoritative result before repeating a consequential action. If no reconciliation exists, retain the input, explain the unresolved status, and prevent duplicate commitment. A timeout or Promise.race does not cancel the underlying operation. |
 | Partial completion | Identify completed and unresolved work. Correct or repeat only the unresolved portion when supported; do not label the entire operation successful or silently discard the valid portion. |
-| Cancel, back, or undo | Specify what each action actually changes and where it returns. Preserve relevant input and context or warn before meaningful loss. Offer cancellation or reversal only when supported. |
+| Cancel, back, reload, or undo | Specify what each action actually changes and where it returns. Preserve relevant input and context or warn before meaningful loss; cancel discards only what its stated scope requires. Offer persistence, cancellation, or reversal only when supported. |
 | Empty, filtered, or unavailable | Distinguish a new account, no search matches, failed data loading, and missing permission. Offer the corresponding next action, such as creating content, clearing filters, retrying, or obtaining access. |
 | Limit or unmet prerequisite | State the real scope and requirement before avoidable effort. Show usage, remaining allowance, reset date, file limits, or minimum duration when known. Preserve useful work and provide a next step if the threshold is missed. |
 
@@ -62,6 +71,18 @@ indicator alone does not prove background execution, saved work, or resumption.
   limit patterns for the same operation. Reuse components instead of generating a
   different variant for each screen. Keep filters, selection, and position
   where they remain relevant; handle an edited item leaving a filtered list.
+- **Return and reload:** restore the same view, selection, position, and
+  still-relevant input after reload or back, and return to the intended context
+  on cancel. Carry navigation state in the URL and draft input in appropriate
+  saved state; do not resurrect deliberately cancelled edits. If restoration
+  is unavailable, make the limitation explicit before meaningful loss. Where server rendering is
+  used, server output and the first hydrated render agree; do not briefly show
+  a different view or default selection before restoring the intended one.
+- **Layout stability:** transient loading, hints, errors, hover, focus, and
+  reconnect feedback must not unexpectedly shift surrounding content or active
+  targets. Reserve appropriate space or reuse an existing status region. Keep
+  feedback readable with long or localized text; do not hide it in a fixed-height
+  box merely to prevent movement. Check transitions as well as static states.
 - **Real content and data:** try long names, missing values, large or negative
   amounts, and relevant localized text. Preserve units and comparable number
   formats. Truncation must preserve identifying information, such as a filename's
@@ -107,8 +128,9 @@ set of scenarios that exercises the changed boundary:
    acceptance when the implementation supports testing that boundary. Follow
    the offered recovery and check the resulting data; an error message appearing
    does not prove the next action is safe or that recovery works.
-3. Exercise the relevant empty or limit condition and an interruption, back,
-   cancel, or return. Check the resulting data and context, not only the screen.
+3. Exercise the relevant empty or limit condition and an interruption, reload,
+   back, cancel, or return. Check the resulting data, restored context, and
+   initial render consistency, not only the final screen.
 4. Use the affected controls with keyboard and the relevant mobile conditions;
    try realistic content and the product's supported themes.
 

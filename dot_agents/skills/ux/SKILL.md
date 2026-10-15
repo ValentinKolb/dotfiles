@@ -53,27 +53,34 @@ cleaner appearance or more engagement.
 
 ## Give the interface a visual direction
 
+In a product with a design system, every new screen, including a new app or
+feature, uses its tokens and components. Mark any mockup element the system
+cannot express yet as a proposed new component, so the mockup stays buildable.
+Change the system only when that is part of the assignment. Develop originality
+within those constraints.
+
 For a new design or an authorized redesign, act as a design lead: derive a
 distinctive, coherent direction from the real subject, audience, and brief.
-Make deliberate choices about type, palette, composition, and motion; take
-an aesthetic risk where it serves the brief. A small feature set can still
-have an ambitious visual treatment.
-
-For existing products, reuse the established components, tokens, and visual
-language unless changing them is part of the task. Develop originality within
-those constraints. Apply the design reference to the affected surface, not
-as a reason to replace the whole product's identity.
+Where visual choices are open, make deliberate choices about type, palette,
+composition, and motion; take an aesthetic risk where it serves the brief.
+A small feature set can still have an ambitious visual treatment. Apply the
+design reference to the affected surface, preserving the product's identity
+unless changing it is part of the assignment.
 
 Use the reference's plan, review, build, and critique process in proportion to
 the task. A local fix needs no new palette, font system, or design presentation.
 
 ## Carry the design into the working interface
 
-For implementation or a functional UI review, read
+For implementation, a design handoff, or a functional UI review, read
 [implementation checks](references/implementation-review.md). Turn material
 promises from the brief, mockup, and chosen design into observable conditions;
 check them against the actual controls, handlers, state transitions, and render.
 Explaining a recovery path or drawing an error state does not implement it.
+
+A mockup or prototype shows each screen's consequential states: empty, loading,
+error with recovery, no permission, pending or saving, and conflict where
+applicable. Use a state switcher to make these reviewable beyond the happy path.
 
 Follow the affected flow across screens, including waiting, failure, and return.
 Keep actions, terminology, limits, and feedback consistent with neighboring

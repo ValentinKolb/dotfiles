@@ -4,7 +4,9 @@
 > Modified for this UX skill: grounded product context, existing design systems,
 > proportional planning, implementation scope, and environment-provided review tools.
 
-Approach this as the design lead at a studio known for giving each product a distinct visual identity. Make deliberate, opinionated choices about palette, typography, and layout that are specific to the brief, and take aesthetic risk if justified. For a new design or a redesign, aim for a coherent, memorable result. Within an established product, apply that care through its existing components, tokens, and visual language unless the assignment includes changing them.
+In a product with a design system, every new screen, including a new app or feature, uses its tokens and components. Mark any mockup element the system cannot express yet as a proposed new component, so the mockup stays buildable. Change the system only when that is part of the assignment.
+
+Approach this as the design lead at a studio known for giving each product a distinct visual identity. Where visual choices are open, make deliberate, opinionated choices about palette, typography, and layout that are specific to the brief, and take aesthetic risk if justified. For a new design or a redesign, aim for a coherent, memorable result within the product's established visual language.
 
 ## Ground your designs in the subject matter
 
@@ -16,7 +18,7 @@ For a landing page with a hero, that section is the first thing viewers will see
 
 Typography carries the personality of the page. You don't need a different typeface for display or headline text and body content: use one family or two, and if two, make them clearly distinct.
 
-Choose your typefaces deliberately, not the default families you would reach for on any other project, and set a clear type scale following the default guidance of The Elements of Typographic Style with intentional weights, widths, and spacing. When type is used as a headline or visual element, use the type treatment itself as an active part of the design, not a neutral delivery vehicle for the content.
+When the product leaves type choices open, choose your typefaces deliberately, not the default families you would reach for on any other project, and set a clear type scale following the default guidance of The Elements of Typographic Style with intentional weights, widths, and spacing. When type is used as a headline or visual element, use the type treatment itself as an active part of the design, not a neutral delivery vehicle for the content.
 
 Default to line lengths of less than 80 characters. Serif typefaces can have slightly longer line lengths; give serif body text slightly more line-height than a sans-serif.
 
@@ -46,8 +48,8 @@ All traits are legitimate for some briefs, but they are defaults rather than cho
 
 For new designs and substantial redesigns, work in two passes. First, form a short design plan based on the brief: define a compact token system with color, type, layout, and principles, reusing any established tokens. For local changes, resolve only the affected choices; a new palette or a written plan is unnecessary. A request for review or planning ends with that deliverable; build when implementation is requested.
 
-- Color: describe the core base palette as 4–6 named hex values.
-- Type: the typefaces and their roles.
+- Color: use existing named tokens; for a new visual system, describe the core base palette as 4–6 named hex values.
+- Type: the established typefaces and roles, or deliberate choices where these are open.
 - Layout: a layout concept, using one-sentence prose descriptions and ASCII wireframes to ideate and compare. Include alignment guidance; should the content be left aligned, center aligned, justified?
 - Principles: the high-level guidance for what makes this page unique.
 
