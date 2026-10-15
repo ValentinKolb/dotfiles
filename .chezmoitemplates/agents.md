@@ -55,6 +55,12 @@ sounding like a policy document or formal status report.
   does not authorize changes on another machine.
 - Keep device names, private addresses, notebook IDs, and access details out of
   public instructions and commits.
+{{- if lookPath "ai-limits" }}
+- Before a task that will run longer than about an hour, check the AI quota
+  with `ai-limits --hours <expected hours>` (`--provider claude|codex` for one
+  provider, `--json` for details). Exit code 0 means go, 1 means it is tight,
+  2 means wait or split the task, 3 means no reliable answer.
+{{- end }}
 
 ## Seats and shared work
 
