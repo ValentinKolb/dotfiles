@@ -1,0 +1,39 @@
+{
+  "skill_name": "ux",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Bitte prüfe nur diese Beschreibung unserer Artikelverwaltung, ändere nichts. Die Mitarbeiter suchen Artikel, korrigieren den Preis und arbeiten dann die gefilterte Liste weiter ab. Über der Liste stehen auf jeder Unterseite dieselben vier Umsatz-KPIs. Artikel sind einzelne Karten. Bearbeiten und Löschen erscheinen nur beim Hover. Nach einer Preisänderung erscheint sofort „Gespeichert“, auch wenn die Serveranfrage noch läuft. Bei einem Fehler verschwindet der Hinweis ohne weitere Meldung. Zurück aus einem Artikel setzt Filter und Scrollposition zurück. Ein leeres Konto und eine erfolglose Suche zeigen beide „Keine Artikel“. Was würdest du zuerst verbessern? Maximal 250 Wörter, bitte keine komplette Neugestaltung und keine Behauptung, du hättest die App getestet.",
+      "expected_output": "Priorisierte, begründete Änderungen am tatsächlichen Arbeitsablauf. Verlustschutz und ehrliche Rückmeldung, Kontext, zugängliche Aktionen und passende Leerzustände. Keine erfundenen Testbefunde oder unbelegten Designsystemwechsel.",
+      "files": [],
+      "expectations": [
+        "Priorisiert die vorzeitige Speicherbestätigung und den stillen Fehler mit wahrheitsgemäßem Zustand und konkreter Wiederherstellung.",
+        "Erhält den Arbeitskontext bei Rückkehr und macht Bearbeiten/Löschen auch ohne Hover erreichbar.",
+        "Bleibt innerhalb der beschriebenen Fakten, behauptet keine App-Prüfung und empfiehlt keinen unbegründeten Komplettumbau.",
+        "Hält die Grenze von 250 Wörtern ein."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Entwirf einen schlanken neuen CSV-Import für unsere Artikelverwaltung. Mitarbeitende importieren gelegentlich etwa 300 Artikel. Spaltennamen unterscheiden sich, einzelne Preise fehlen und manche Artikelnummern gibt es schon. Die Leute werden oft unterbrochen und nutzen teilweise ein Smartphone. Es gibt noch keine bestätigten Aussagen dazu, ob der Server Imports fortsetzen, abbrechen oder rückgängig machen kann. Bitte beschreibe den Ablauf samt wichtigsten Fehler- und Rückwegen, mit einer klaren Empfehlung. Noch kein Code, maximal 350 Wörter.",
+      "expected_output": "Kleiner vollständiger Importablauf mit Zuordnung, Vorschau/Prüfung, Konfliktentscheidung und verständlichem Resultat. Wiederaufnahme, Abbruch und Undo bleiben zu prüfende Fähigkeiten. Schutz vor Doppelimport und relevanter mobiler/tastaturbasierter Nutzung.",
+      "files": [],
+      "expectations": [
+        "Entwirft einen zusammenhängenden Ablauf mit Spaltenzuordnung, Prüfung und Entscheidung über vorhandene Artikelnummern vor dem Import.",
+        "Berücksichtigt Unterbrechungen oder Wiederholung und unterscheidet bestätigte von unbekannten Serverfähigkeiten für Resume, Abbruch oder Undo.",
+        "Berücksichtigt Teilfehler beziehungsweise ein nachvollziehbares Importergebnis und eine nutzbare Korrektur oder Wiederholung.",
+        "Hält die Grenze von 350 Wörtern ein und liefert keinen Code."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Kleine UX-Frage, bitte wirklich nur eine bessere Buttonbeschriftung: Im Artikeleditor heißt der Button „Weiter“. Er öffnet die Auswahl einer Vorlage, verändert oder speichert aber noch nichts.",
+      "expected_output": "Eine konkrete passende Beschriftung ohne Audit, Checkliste, Rückfragen oder Erweiterung des Auftrags.",
+      "files": [],
+      "expectations": [
+        "Liefert eine einzige passende Buttonbeschriftung für das Öffnen der Vorlagenauswahl.",
+        "Fügt weder Audit noch Checkliste, Rückfragen oder nicht angeforderte Umsetzung hinzu."
+      ]
+    }
+  ]
+}
