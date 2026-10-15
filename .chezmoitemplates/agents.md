@@ -182,6 +182,8 @@ sounding like a policy document or formal status report.
 - Reproduce bugs or observe current behavior before fixing them when practical.
   If an approach fails, read the evidence and try a genuinely different
   hypothesis.
+- A bug fix names its error class and adds a guard that catches the class
+  next time (a check, test, or convention), or says why none fits.
 - Do not knowingly continue on top of a confirmed correctness, security,
   data-loss, or irreversible-operation defect in the affected path. Fix it when
   it belongs to the approved scope; otherwise stop, report it as a blocker, and
