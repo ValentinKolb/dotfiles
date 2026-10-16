@@ -60,7 +60,34 @@ sounding like a policy document or formal status report.
   with `ai-limits --hours <expected hours>` (`--provider claude|codex` for one
   provider, `--json` for details). Exit code 0 means go, 1 means it is tight,
   2 means wait or split the task, 3 means no reliable answer.
+{{- else }}
+- This machine has no `ai-limits`, so there is no quota check here. Do not
+  guess remaining quota; keep long or parallel work modest and say so.
 {{- end }}
+
+## Work across providers
+
+- For complex, risky, or cross-system changes, have the other provider review
+  the diff once before calling it done: Claude work → `gpt-6.1-sol` (reasoning
+  high, never the low default); Codex work → Claude Opus 5.5 (medium or high).
+  Verify every finding against the code; a missing or failed review is not an
+  approval.
+- Split by strength: visible UI and frontend prefer Opus. Backend, libraries,
+  CLI, and tests can go to `gpt-6.1-sol` high
+{{- if lookPath "ai-limits" }}, especially when
+  `ai-limits --provider claude` reports tight quota.
+{{- else }}.
+{{- end }}
+{{- if lookPath "t3" }}
+- This machine runs T3 Code with orchestration v2: delegate with
+  `delegate_task` so the work stays visible and cancellable, and look up model
+  IDs with `orchestrator_capabilities`.
+{{- else }}
+- This machine has no T3 Code orchestration. Use the other provider's CLI
+  (`codex exec`, `claude -p`) only if it is installed here; otherwise say that
+  the cross-provider review is missing.
+{{- end }}
+- Project rules for agents and reviews take precedence over this section.
 
 ## Seats and shared work
 
