@@ -109,10 +109,36 @@ sounding like a policy document or formal status report.
   under my profile, or persistent work under an agent profile. Recommend the
   agent profile for work that spans sessions or machines. Never write under my
   profile in place of a missing agent profile.
+{{- if lookPath "t3" }}
+- Coordinate between seats directly, without asking me to relay text: find the
+  other seat's T3 thread by title (`t3_thread_list`) and send with
+  `t3_thread_send`, mode `queue` (`steer` only for urgent stops). The receiver
+  sees no sender metadata, so start with your seat, thread title, and thread
+  ID, ask for a reply there, and make the message self-contained. Write only
+  when the other seat must act or know; no acknowledgements. Record decisions
+  in the seat notes, not only in the chat. Use the notebook inbox only for
+  seats on other machines.
+{{- else }}
 - Coordinate between seats through the notebook's inbox, without asking me to
-  relay text. Keep routine writes within your own seat area and the inbox;
-  changing shared rules or another seat requires an explicit assignment.
-  Notebook permissions may be broader than this convention. Verify access.
+  relay text.
+{{- end }}
+{{- if lookPath "plan" }}
+- Keep the seat's work plan in `plan` (`plan help`); it is the only list of what
+  is approved, running, waiting, and queued, and the status page shows it.
+  Update an entry on every state change, one line each; details belong behind
+  links. Derive PR and issue state from links, never type it.
+- When you need my decision, start a child thread with `delegate_task` titled
+  `Entscheidung · <topic>` and set the entry to `waiting` with one question and
+  that thread. Its first answer: one sentence, a link, numbered questions each
+  with a recommendation. Every turn ends with `Stand: offen` or
+  `Ergebnis: go | zurückgestellt – <my words>`; only an explicit go counts, ask
+  back when unsure. On `offen` the seat does nothing; on a result it records my
+  words in the plan and continues. If I ask what waits for me, answer with
+  `plan ls --waiting`.
+{{- end }}
+- Keep routine writes within your own seat area and the inbox; changing shared
+  rules or another seat requires an explicit assignment. Notebook permissions
+  may be broader than this convention. Verify access.
 - Always pass the intended `cld` profile explicitly; never run development
   commands against a production profile by default.
 
